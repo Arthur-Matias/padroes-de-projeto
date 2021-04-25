@@ -12,7 +12,7 @@ interface DisplayElement{
 }
 
 class WeatherData implements Subject{
-    private observers:Observer[] = [];
+    private observers:Observer[];
     private temperature:number;
     private humidity:number;
     private pressure:number;
@@ -30,7 +30,7 @@ class WeatherData implements Subject{
 
     notifyObservers():void{
         for(let i=0; i < this.observers.length; i++){
-            let observer:Observer = this.observers[i]
+            let observer:Observer = this.observers[i];
             observer.update(this.temperature, this.humidity, this.pressure);
         }
     }
@@ -44,6 +44,10 @@ class WeatherData implements Subject{
         this.humidity = humidity;
         this.pressure = pressure;
         this.measurementsChanged();
+    }
+
+    constructor(){
+        this.observers = [];
     }
 }
 
@@ -67,8 +71,6 @@ class CurrentConditionsDisplay implements Observer, DisplayElement{
         console.log(`Current conditions: ${this.temperature}C degrees and ${this.humidity}% humidity`);
     }
 }
-
-
 
 let weatherData:WeatherData = new WeatherData();
 
