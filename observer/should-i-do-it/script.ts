@@ -1,3 +1,7 @@
+const button = document.querySelector('button');
+const angel = document.querySelector('#angel');
+const devil = document.querySelector('#devil');
+
 interface Subject{
     registerObserver(o: Observer):void;
     removeObserver(o: Observer):void;
@@ -42,10 +46,8 @@ class DevilObserver implements Observer{
     
 
     update(){
-        let num = Math.round(Math.random() * 2);
-        if( num > 0 ){
-            console.log(`The devil says: ${this.answers[num]}`);
-        }
+        let num = Math.floor(Math.random() *2);
+          devil.textContent = `The devil says: ${this.answers[num]}`;
     }
 }
 
@@ -54,10 +56,8 @@ class AngelObserver implements Observer{
     
 
     update(){
-        let num = Math.round(Math.random() * 2);
-        if( num > 0 ){
-            console.log(`The angel says: ${this.answers[num]}`);
-        }
+        let num = Math.floor(Math.random() *2);
+          angel.textContent = `The angel says: ${this.answers[num]}`;
     }
 }
 
@@ -68,8 +68,8 @@ const Angel:AngelObserver = new AngelObserver();
 swingObserverExample.registerObserver(Devil)
 swingObserverExample.registerObserver(Angel)
 
-swingObserverExample.click();
-swingObserverExample.click();
-swingObserverExample.click();
-swingObserverExample.click();
-swingObserverExample.click();
+button.addEventListener('click', ()=>{
+  angel.textContent = '';
+  devil.textContent = '';
+  swingObserverExample.click()
+})
